@@ -1,8 +1,9 @@
 # Output Map
 
 This source-audit map tracks the final replication targets and the original artifacts that produce them.
-Later M1 audit work should fill in the `Staged inputs`, `Intermediate outputs`, and `Planned maintained module` fields before any porting work starts.
+Per-output audit work should fill in the `Staged inputs`, `Intermediate outputs`, and `Planned maintained module` fields before each porting slice starts.
 See `docs/staged_input_coverage.md` for the `a1_globals.do` path mapping used when filling staged input fields.
+See `docs/shared_construction_map.md` for the shared source-construction scripts and intermediate datasets that feed multiple final-output scripts.
 
 Status values:
 
