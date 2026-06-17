@@ -1,0 +1,26 @@
+# Original Dataverse package and staged raw inputs
+dataverse_files/
+data/raw/
+data/processed/
+
+# Runtime artifacts
+logs/
+*.log
+*.smcl
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Stata scratch files
+*.tmp
+*.stswp
+
+# Keep final replication outputs trackable
+!output/
+!output/results/
+!output/results/tables/
+!output/results/tables/.gitkeep
+!output/results/figures/
+!output/results/figures/.gitkeep

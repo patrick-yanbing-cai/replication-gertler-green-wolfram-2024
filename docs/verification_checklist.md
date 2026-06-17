@@ -1,0 +1,83 @@
+# Verification Checklist
+
+This checklist records manual verification against the staged reference outputs copied from the original Dataverse package.
+
+Reference outputs:
+
+```text
+data/raw/reference_outputs/
+```
+
+Maintained pipeline outputs:
+
+```text
+output/results/
+```
+
+Status values:
+
+- `pending`: not yet checked
+- `match`: output matches the required reference or paper result
+- `diff`: output differs and needs investigation
+- `n/a`: intentionally excluded, with explanation
+
+## Tables
+
+| Output | Reference | Reproduced | Status | Notes |
+|---|---|---|---|---|
+| assets99_lvl_ITT_v2.tex | data/raw/reference_outputs/tables/assets99_lvl_ITT_v2.tex | output/results/tables/assets99_lvl_ITT_v2.tex | pending | |
+| assetsbal99_lvl_ITT_v2.tex | data/raw/reference_outputs/tables/assetsbal99_lvl_ITT_v2.tex | output/results/tables/assetsbal99_lvl_ITT_v2.tex | pending | |
+| compliance_tab.tex | data/raw/reference_outputs/tables/compliance_tab.tex | output/results/tables/compliance_tab.tex | pending | |
+| endline_educ_hh.tex | data/raw/reference_outputs/tables/endline_educ_hh.tex | output/results/tables/endline_educ_hh.tex | pending | |
+| endline_educ_hh_full.tex | data/raw/reference_outputs/tables/endline_educ_hh_full.tex | output/results/tables/endline_educ_hh_full.tex | pending | |
+| endline_educ_indiv.tex | data/raw/reference_outputs/tables/endline_educ_indiv.tex | output/results/tables/endline_educ_indiv.tex | pending | |
+| endline_moneyborrowed.tex | data/raw/reference_outputs/tables/endline_moneyborrowed.tex | output/results/tables/endline_moneyborrowed.tex | pending | |
+| income99_lvl_ITT.tex | data/raw/reference_outputs/tables/income99_lvl_ITT.tex | output/results/tables/income99_lvl_ITT.tex | pending | |
+| LASMH_complete_earlyadopt_ITT_110.tex | data/raw/reference_outputs/tables/LASMH_complete_earlyadopt_ITT_110.tex | output/results/tables/LASMH_complete_earlyadopt_ITT_110.tex | pending | |
+| LASMH_complete_earlyadopt_ITT_150.tex | data/raw/reference_outputs/tables/LASMH_complete_earlyadopt_ITT_150.tex | output/results/tables/LASMH_complete_earlyadopt_ITT_150.tex | pending | |
+| LASMH_complete_earlyadopt_ITT_200.tex | data/raw/reference_outputs/tables/LASMH_complete_earlyadopt_ITT_200.tex | output/results/tables/LASMH_complete_earlyadopt_ITT_200.tex | pending | |
+| LASMH_complete_earlyadopt_LATE_110.tex | data/raw/reference_outputs/tables/LASMH_complete_earlyadopt_LATE_110.tex | output/results/tables/LASMH_complete_earlyadopt_LATE_110.tex | pending | |
+| LASMH_complete_earlyadopt_LATE_150.tex | data/raw/reference_outputs/tables/LASMH_complete_earlyadopt_LATE_150.tex | output/results/tables/LASMH_complete_earlyadopt_LATE_150.tex | pending | |
+| LASMH_complete_earlyadopt_LATE_200.tex | data/raw/reference_outputs/tables/LASMH_complete_earlyadopt_LATE_200.tex | output/results/tables/LASMH_complete_earlyadopt_LATE_200.tex | pending | |
+| LASMH_complete_ITT_110.tex | data/raw/reference_outputs/tables/LASMH_complete_ITT_110.tex | output/results/tables/LASMH_complete_ITT_110.tex | pending | |
+| LASMH_complete_ITT_150.tex | data/raw/reference_outputs/tables/LASMH_complete_ITT_150.tex | output/results/tables/LASMH_complete_ITT_150.tex | pending | |
+| LASMH_complete_ITT_200.tex | data/raw/reference_outputs/tables/LASMH_complete_ITT_200.tex | output/results/tables/LASMH_complete_ITT_200.tex | pending | |
+| LASMH_complete_LATE_110.tex | data/raw/reference_outputs/tables/LASMH_complete_LATE_110.tex | output/results/tables/LASMH_complete_LATE_110.tex | pending | |
+| LASMH_complete_LATE_150.tex | data/raw/reference_outputs/tables/LASMH_complete_LATE_150.tex | output/results/tables/LASMH_complete_LATE_150.tex | pending | |
+| LASMH_complete_LATE_200.tex | data/raw/reference_outputs/tables/LASMH_complete_LATE_200.tex | output/results/tables/LASMH_complete_LATE_200.tex | pending | |
+| LASMH_complete_riskinteract_ITT.tex | data/raw/reference_outputs/tables/LASMH_complete_riskinteract_ITT.tex | output/results/tables/LASMH_complete_riskinteract_ITT.tex | pending | |
+| LASMH_complete_riskinteract_LATE.tex | data/raw/reference_outputs/tables/LASMH_complete_riskinteract_LATE.tex | output/results/tables/LASMH_complete_riskinteract_LATE.tex | pending | |
+| LASMH_complete_wtpinteract_LATE.tex | data/raw/reference_outputs/tables/LASMH_complete_wtpinteract_LATE.tex | output/results/tables/LASMH_complete_wtpinteract_LATE.tex | pending | |
+| LASMH_repay_earlyadopt_ITT_100.tex | data/raw/reference_outputs/tables/LASMH_repay_earlyadopt_ITT_100.tex | output/results/tables/LASMH_repay_earlyadopt_ITT_100.tex | pending | |
+| LASMH_repay_earlyadopt_ITT_150.tex | data/raw/reference_outputs/tables/LASMH_repay_earlyadopt_ITT_150.tex | output/results/tables/LASMH_repay_earlyadopt_ITT_150.tex | pending | |
+| LASMH_repay_earlyadopt_ITT_200.tex | data/raw/reference_outputs/tables/LASMH_repay_earlyadopt_ITT_200.tex | output/results/tables/LASMH_repay_earlyadopt_ITT_200.tex | pending | |
+| LASMH_repay_earlyadopt_LATE_100.tex | data/raw/reference_outputs/tables/LASMH_repay_earlyadopt_LATE_100.tex | output/results/tables/LASMH_repay_earlyadopt_LATE_100.tex | pending | |
+| LASMH_repay_earlyadopt_LATE_150.tex | data/raw/reference_outputs/tables/LASMH_repay_earlyadopt_LATE_150.tex | output/results/tables/LASMH_repay_earlyadopt_LATE_150.tex | pending | |
+| LASMH_repay_earlyadopt_LATE_200.tex | data/raw/reference_outputs/tables/LASMH_repay_earlyadopt_LATE_200.tex | output/results/tables/LASMH_repay_earlyadopt_LATE_200.tex | pending | |
+| LASMH_repay_ITT_100.tex | data/raw/reference_outputs/tables/LASMH_repay_ITT_100.tex | output/results/tables/LASMH_repay_ITT_100.tex | pending | |
+| LASMH_repay_ITT_150.tex | data/raw/reference_outputs/tables/LASMH_repay_ITT_150.tex | output/results/tables/LASMH_repay_ITT_150.tex | pending | |
+| LASMH_repay_ITT_200.tex | data/raw/reference_outputs/tables/LASMH_repay_ITT_200.tex | output/results/tables/LASMH_repay_ITT_200.tex | pending | |
+| LASMH_repay_LATE_100.tex | data/raw/reference_outputs/tables/LASMH_repay_LATE_100.tex | output/results/tables/LASMH_repay_LATE_100.tex | pending | |
+| LASMH_repay_LATE_150.tex | data/raw/reference_outputs/tables/LASMH_repay_LATE_150.tex | output/results/tables/LASMH_repay_LATE_150.tex | pending | |
+| LASMH_repay_LATE_200.tex | data/raw/reference_outputs/tables/LASMH_repay_LATE_200.tex | output/results/tables/LASMH_repay_LATE_200.tex | pending | |
+| LASMH_repay_riskinteract_ITT.tex | data/raw/reference_outputs/tables/LASMH_repay_riskinteract_ITT.tex | output/results/tables/LASMH_repay_riskinteract_ITT.tex | pending | |
+| LASMH_repay_riskinteract_LATE.tex | data/raw/reference_outputs/tables/LASMH_repay_riskinteract_LATE.tex | output/results/tables/LASMH_repay_riskinteract_LATE.tex | pending | |
+| LASMH_repay_wtpinteract_LATE.tex | data/raw/reference_outputs/tables/LASMH_repay_wtpinteract_LATE.tex | output/results/tables/LASMH_repay_wtpinteract_LATE.tex | pending | |
+| r_treatment_irr_withCI.tex | data/raw/reference_outputs/tables/r_treatment_irr_withCI.tex | output/results/tables/r_treatment_irr_withCI.tex | pending | |
+| sacreg.tex | data/raw/reference_outputs/tables/sacreg.tex | output/results/tables/sacreg.tex | pending | |
+| shock_A.tex | data/raw/reference_outputs/tables/shock_A.tex | output/results/tables/shock_A.tex | pending | |
+| shock_B.tex | data/raw/reference_outputs/tables/shock_B.tex | output/results/tables/shock_B.tex | pending | |
+
+## Figures
+
+| Output | Reference | Reproduced | Status | Notes |
+|---|---|---|---|---|
+| diff_complete.pdf | data/raw/reference_outputs/figures/diff_complete.pdf | output/results/figures/diff_complete.pdf | pending | |
+| diff_repayments.pdf | data/raw/reference_outputs/figures/diff_repayments.pdf | output/results/figures/diff_repayments.pdf | pending | |
+| IRRs_cdf.eps | data/raw/reference_outputs/figures/IRRs_cdf.eps | output/results/figures/IRRs_cdf.eps | pending | |
+| IRRs_cdf.png | data/raw/reference_outputs/figures/IRRs_cdf.png | output/results/figures/IRRs_cdf.png | pending | |
+| IRRs_terciles.eps | data/raw/reference_outputs/figures/IRRs_terciles.eps | output/results/figures/IRRs_terciles.eps | pending | |
+| IRRs_terciles.png | data/raw/reference_outputs/figures/IRRs_terciles.png | output/results/figures/IRRs_terciles.png | pending | |
+| loancompleteratesgrey.pdf | data/raw/reference_outputs/figures/loancompleteratesgrey.pdf | output/results/figures/loancompleteratesgrey.pdf | pending | |
+| repaymentratesgrey.pdf | data/raw/reference_outputs/figures/repaymentratesgrey.pdf | output/results/figures/repaymentratesgrey.pdf | pending | |
+| takeupbywtp_dif.png | data/raw/reference_outputs/figures/takeupbywtp_dif.png | output/results/figures/takeupbywtp_dif.png | pending | |
