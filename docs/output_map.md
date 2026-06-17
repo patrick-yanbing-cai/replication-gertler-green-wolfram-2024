@@ -2,6 +2,7 @@
 
 This source-audit map tracks the final replication targets and the original artifacts that produce them.
 Later M1 audit work should fill in the `Staged inputs`, `Intermediate outputs`, and `Planned maintained module` fields before any porting work starts.
+See `docs/staged_input_coverage.md` for the `a1_globals.do` path mapping used when filling staged input fields.
 
 Status values:
 
