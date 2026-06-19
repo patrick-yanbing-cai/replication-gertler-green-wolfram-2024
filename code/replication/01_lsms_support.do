@@ -9,12 +9,12 @@ if "$repo_root" == "" {
 }
 
 if "$lsms2018" == "" {
-    display as error "lsms2018 global is not defined. Run code/replication/setup_globals.do before LSMS support."
+    display as error "lsms2018 global is not defined. Run code/replication/00_header.do before LSMS support."
     exit 198
 }
 
 if "$lsms_processed" == "" {
-    display as error "lsms_processed global is not defined. Run code/replication/setup_globals.do before LSMS support."
+    display as error "lsms_processed global is not defined. Run code/replication/00_header.do before LSMS support."
     exit 198
 }
 
@@ -28,18 +28,22 @@ assert_stata_intermediate_path "$lsms_processed" "lsms_processed"
 assert_maintained_generated_path "$lsms_asset_prices" "lsms_asset_prices"
 assert_stata_intermediate_path "$lsms_asset_prices" "lsms_asset_prices"
 
+display as text "Step 1.1: LSMS household asset prices (c2_build_asset_prices.do)"
 display as text "BEGIN original source boundary: c2_build_asset_prices.do"
 do "$repo_root/code/replication/support/lsms/c2_build_asset_prices.do"
 display as text "END original source boundary: c2_build_asset_prices.do"
 
+display as text "Step 1.2: LSMS business asset prices (c3_build_busasset_prices.do)"
 display as text "BEGIN original source boundary: c3_build_busasset_prices.do"
 do "$repo_root/code/replication/support/lsms/c3_build_busasset_prices.do"
 display as text "END original source boundary: c3_build_busasset_prices.do"
 
+display as text "Step 1.3: LSMS characteristics (c4_build_lsms_chars.do)"
 display as text "BEGIN original source boundary: c4_build_lsms_chars.do"
 do "$repo_root/code/replication/support/lsms/c4_build_lsms_chars.do"
 display as text "END original source boundary: c4_build_lsms_chars.do"
 
+display as text "Step 1.4: LSMS income/individual/household variables (d11_lsms_vars_build.do)"
 display as text "BEGIN original source boundary: d11_lsms_vars_build.do"
 do "$repo_root/code/replication/support/lsms/d11_lsms_vars_build.do"
 display as text "END original source boundary: d11_lsms_vars_build.do"

@@ -59,8 +59,11 @@ Current maintained Stata workflow structure:
 
 | Ordered step | Script | Role |
 |---|---|---|
-| Foundation setup | `code/replication/run_replication.do` + `code/replication/setup_globals.do` | Resolve repo-relative paths, create maintained output directories, check dependencies, and open the deterministic Stata log. |
+| Entrypoint | `code/replication/run_replication.do` | Detect the repository root, open the deterministic Stata log, dispatch ordered steps, and exit consistently on failure. |
+| Step 0 | `code/replication/00_header.do` | Resolve repo-relative paths, create maintained output directories, check source paths, and verify Stata dependencies. |
 | Step 1 | `code/replication/01_lsms_support.do` | Build maintained LSMS support outputs under `data/processed/stata/lsms` while preserving the four original source-script boundaries under `code/replication/support/lsms/`. |
+| Planned Step 2 | `code/replication/02_baseline_support.do` | Build maintained baseline survey support outputs when the baseline support issue is implemented. |
+| Planned Step 3 | `code/replication/03_endline_support.do` | Build maintained endline survey support outputs when the endline support issue is implemented. |
 
 ## M3 Stata Table and Figure Modules
 

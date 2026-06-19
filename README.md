@@ -43,22 +43,34 @@ The original package is not tracked by git.
 
 ```text
 .
-├── code/
-│   ├── setup/
-│   │   └── prepare_raw_files.py
-│   └── replication/
-├── data/
-│   ├── raw/              # generated from dataverse_files/, not tracked
-│   └── processed/        # generated intermediate data, not tracked
-├── docs/
-│   └── verification_checklist.md
-├── output/
-│   └── results/
-│       ├── figures/      # final reproduced figures, tracked
-│       └── tables/       # final reproduced tables, tracked
-├── dataverse_files/      # original package, not tracked
-├── README.md
-└── replication_notes.md
+|-- code/
+|   |-- setup/
+|   |   |-- prepare_raw_files.py
+|   |   `-- install_stata_dependencies.do
+|   `-- replication/
+|       |-- run_replication.do          # single clickable Stata entrypoint
+|       |-- 00_header.do                # Step 0: globals, paths, guards, dependency checks
+|       |-- 01_lsms_support.do          # Step 1: maintained LSMS support outputs
+|       `-- support/
+|           |-- stata/
+|           |   `-- check_dependencies.do
+|           `-- lsms/
+|               |-- c2_build_asset_prices.do
+|               |-- c3_build_busasset_prices.do
+|               |-- c4_build_lsms_chars.do
+|               `-- d11_lsms_vars_build.do
+|-- data/
+|   |-- raw/                            # generated from dataverse_files/, not tracked
+|   `-- processed/                      # generated intermediate data, not tracked
+|-- docs/
+|   `-- verification_checklist.md
+|-- output/
+|   `-- results/
+|       |-- figures/                    # final reproduced figures, tracked
+|       `-- tables/                     # final reproduced tables, tracked
+|-- dataverse_files/                    # original package, not tracked
+|-- README.md
+`-- replication_notes.md
 ```
 
 ---
@@ -101,11 +113,12 @@ clicking Run starts the ordered replication workflow:
 code/replication/run_replication.do
 ```
 
-The ordered workflow initializes repo-relative globals, creates output and log
-directories, checks required staged source directories, checks Stata
-dependencies, then runs numbered research steps. The current maintained steps
-build LSMS support intermediates needed by later baseline and final-output
-modules.
+The ordered workflow uses `00_header.do` for Step 0 header, path, and
+dependency checks, then runs numbered research steps. The current maintained
+research step is `01_lsms_support.do`, which builds LSMS support intermediates
+needed by later baseline and final-output modules. Planned later steps should
+continue the same numbering pattern, such as `02_baseline_support.do` and
+`03_endline_support.do`.
 
 The replication log is written to:
 

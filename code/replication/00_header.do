@@ -1,4 +1,10 @@
-*** Purpose: Define maintained repo-relative globals for Stata replication code.
+*** Purpose: Step 0, define and verify maintained Stata replication globals.
+
+args header_mode
+if !inlist("`header_mode'", "", "verify") {
+    display as error "Unsupported 00_header.do mode: `header_mode'"
+    exit 198
+}
 
 if "$repo_root" == "" {
     display as error "repo_root global is not defined. Run code/replication/run_replication.do from the repository root."
@@ -144,3 +150,39 @@ program define assert_stata_intermediate_path
         exit 198
     }
 end
+
+if "`header_mode'" == "verify" {
+    display as text "initialized global bsvy_raw: $bsvy_raw"
+    display as text "initialized global esvy_raw: $esvy_raw"
+    display as text "initialized global bsvy_clean: $bsvy_clean"
+    display as text "initialized global esvy_clean: $esvy_clean"
+    display as text "initialized global temp: $temp"
+    display as text "initialized global processed_stata: $processed_stata"
+    display as text "initialized global lsms2018: $lsms2018"
+    display as text "initialized global lsms_processed: $lsms_processed"
+    display as text "initialized global lsms_asset_prices: $lsms_asset_prices"
+    display as text "initialized global merged: $merged"
+    display as text "initialized global repay_clean: $repay_clean"
+    display as text "initialized global tables: $tables"
+    display as text "initialized global figures: $figures"
+    display as text "initialized global stata_logs: $stata_logs"
+
+    display as text "checking maintained generated path processed_stata: $processed_stata"
+    assert_maintained_generated_path "$processed_stata" "processed_stata"
+    assert_stata_intermediate_path "$processed_stata" "processed_stata"
+    display as text "checking maintained generated path lsms_processed: $lsms_processed"
+    assert_maintained_generated_path "$lsms_processed" "lsms_processed"
+    assert_stata_intermediate_path "$lsms_processed" "lsms_processed"
+    display as text "checking maintained generated path lsms_asset_prices: $lsms_asset_prices"
+    assert_maintained_generated_path "$lsms_asset_prices" "lsms_asset_prices"
+    assert_stata_intermediate_path "$lsms_asset_prices" "lsms_asset_prices"
+    display as text "checking maintained generated path tables: $tables"
+    assert_maintained_generated_path "$tables" "tables"
+    display as text "checking maintained generated path figures: $figures"
+    assert_maintained_generated_path "$figures" "figures"
+    display as text "checking maintained generated path stata_logs: $stata_logs"
+    assert_maintained_generated_path "$stata_logs" "stata_logs"
+    display as result "Maintained generated path checks completed."
+
+    do "$repo_root/code/replication/support/stata/check_dependencies.do"
+}
