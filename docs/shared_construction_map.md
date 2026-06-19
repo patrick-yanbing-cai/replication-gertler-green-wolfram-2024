@@ -63,7 +63,8 @@ construction scripts named in Issue 3.
 - The maintained baseline survey support step,
   `code/replication/02_baseline_support.do`, covers
   `d9_construct_bsvysec_2.do` and `e1_build_bsvysec.do`.
-- A future endline survey support module can cover
+- The maintained endline survey support step,
+  `code/replication/03_endline_support.do`, covers
   `d10_construct_esvysec_2.do`, `f1_educ_index_prep_female.do`, and
   `f2_educ_index_prep_male.do`.
 - `key_rep.dta`, repayment data, and IRR interim files should remain explicit
@@ -124,3 +125,33 @@ newly generated baseline support files to
 M3 Stata consumers should read the maintained
 `data/processed/stata/baseline_survey/hhvars_baseline.dta` path instead of the
 staged reference copy under `data/raw/baseline_survey/clean`.
+
+## Maintained Endline Survey Output Mapping
+
+The maintained endline support step preserves the original
+`d10_construct_esvysec_2.do`, `f1_educ_index_prep_female.do`, and
+`f2_educ_index_prep_male.do` source-script boundaries. It reads pre-staged
+endline clean inputs from `data/raw/endline_survey/clean` where no maintained
+producer has been identified, and routes newly generated endline support files
+to `data/processed/stata/endline_survey`.
+
+| Original source script | Maintained output |
+|---|---|
+| `d10_construct_esvysec_2.do` | `data/processed/stata/endline_survey/1_hhinfo.dta` |
+| `d10_construct_esvysec_2.do` | `data/processed/stata/endline_survey/3B_land.dta` |
+| `d10_construct_esvysec_2.do` | `data/processed/stata/endline_survey/4_busassets.dta` |
+| `d10_construct_esvysec_2.do` | `data/processed/stata/endline_survey/4_comassets_val.dta` |
+| `d10_construct_esvysec_2.do` | `data/processed/stata/endline_survey/6A_rdypyloanuse.dta` |
+| `d10_construct_esvysec_2.do` | `data/processed/stata/endline_survey/7_wellbeing.dta` |
+| `d10_construct_esvysec_2.do` | `data/processed/stata/endline_survey/7_wellbeing_hh.dta` |
+| `d10_construct_esvysec_2.do` | `data/processed/stata/endline_survey/9_lockedoccurences.dta` |
+| `d10_construct_esvysec_2.do` | `data/processed/stata/endline_survey/9_lockedoccurences_hh.dta` |
+| `f1_educ_index_prep_female.do` | `data/processed/stata/endline_survey/femaleeduc.dta` |
+| `f2_educ_index_prep_male.do` | `data/processed/stata/endline_survey/maleeduc.dta` |
+
+M3 Stata consumers should read maintained endline support files from
+`data/processed/stata/endline_survey` when a maintained producer exists. Staged
+inputs without maintained producers, including `2_educ_indiv.dta`,
+`2_educ_hh.dta`, `3A_assets_hh.dta`, `6_bsl.dta`, and
+`adult_labor_supply_hh.dta`, remain explicit author-provided inputs under
+`data/raw/endline_survey/clean`.
