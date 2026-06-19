@@ -57,9 +57,9 @@ construction scripts named in Issue 3.
 
 ## Maintained Module Boundary Notes
 
-- A future LSMS support module can cover `c2_build_asset_prices.do`,
-  `c3_build_busasset_prices.do`, `c4_build_lsms_chars.do`, and
-  `d11_lsms_vars_build.do`.
+- The maintained LSMS support step, `code/replication/01_lsms_support.do`,
+  covers `c2_build_asset_prices.do`, `c3_build_busasset_prices.do`,
+  `c4_build_lsms_chars.do`, and `d11_lsms_vars_build.do`.
 - A future baseline survey support module can cover
   `d9_construct_bsvysec_2.do` and `e1_build_bsvysec.do`.
 - A future endline survey support module can cover

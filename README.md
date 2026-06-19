@@ -95,21 +95,27 @@ code/setup/install_stata_dependencies.do
 Then run maintained Stata code through the single top-level replication
 entrypoint. The entrypoint can be opened directly in Stata's do-file editor and
 run without first changing Stata's working directory. Opening this file and
-clicking Run starts the foundation workflow by default:
+clicking Run starts the ordered replication workflow:
 
 ```text
 code/replication/run_replication.do
 ```
 
-The foundation workflow initializes repo-relative globals, creates output and
-log directories, checks required staged source directories, writes a
-deterministic Stata log, and exits without running final-output modules.
+The ordered workflow initializes repo-relative globals, creates output and log
+directories, checks required staged source directories, checks Stata
+dependencies, then runs numbered research steps. The current maintained steps
+build LSMS support intermediates needed by later baseline and final-output
+modules.
 
-The foundation log is written to:
+The replication log is written to:
 
 ```text
-output/logs/stata/run_foundation.smcl
+output/logs/stata/run_replication.smcl
 ```
+
+Maintained LSMS support outputs are written under `data/processed/stata/lsms`,
+including asset price lookups and LSMS income, individual, and household support
+datasets.
 
 Maintained table and figure outputs are written under `output/results/`.
 Author-provided staged intermediates remain under `data/raw/interim`, while
@@ -125,9 +131,9 @@ The maintained replication code uses:
 - Python 3.11+
 
 Stata dependency setup is maintained as clickable executable Stata code in
-`code/setup/install_stata_dependencies.do`. The foundation workflow checks
+`code/setup/install_stata_dependencies.do`. The replication workflow checks
 dependencies in one preflight run and reports failures in
-`output/logs/stata/run_foundation.smcl`; the replication entrypoint does not
+`output/logs/stata/run_replication.smcl`; the replication entrypoint does not
 auto-install Stata packages.
 
 R, Matlab, and Jupyter notebooks may exist in the original Dataverse package, but they are not part of this repo's maintained pipeline.
