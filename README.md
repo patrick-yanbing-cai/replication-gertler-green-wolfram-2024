@@ -83,6 +83,38 @@ The formal replication pipeline will read from `data/raw/`, not directly from `d
 
 ---
 
+## Stata Replication Entrypoint
+
+Run maintained Stata code through the single top-level entrypoint. The
+entrypoint can be opened directly in Stata's do-file editor and run without
+first changing Stata's working directory. The foundation selector initializes
+repo-relative globals, creates output and log directories, checks required
+staged source directories, writes a deterministic Stata log, and exits without
+running final-output modules:
+
+```stata
+do "<repo-root>/code/replication/run_replication.do" foundation
+```
+
+From a shell in the repository root with Stata on `PATH`, the equivalent batch
+command is:
+
+```bash
+stata-mp -b do code/replication/run_replication.do foundation
+```
+
+The foundation log is written to:
+
+```text
+output/logs/stata/run_foundation.smcl
+```
+
+Maintained table and figure outputs are written under `output/results/`.
+Author-provided staged intermediates remain under `data/raw/interim`, while
+maintained Stata intermediates should be written under `data/processed/stata`.
+
+---
+
 ## Requirements
 
 The maintained replication code will use:
