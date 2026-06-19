@@ -34,6 +34,8 @@ global processed_stata "$repo_root/data/processed/stata"
 
 * Uganda LSMS data, 2018
 global lsms2018 "$repo_root/data/raw/lsms/UGA_2018_UNPS_v01_M_STATA12"
+global lsms_processed "$processed_stata/lsms"
+global lsms_asset_prices "$lsms_processed/Asset prices data"
 
 ***********************
 ** Merged data paths **
@@ -64,7 +66,9 @@ foreach dir in ///
     `"$repo_root/output/logs/stata"' ///
     `"$repo_root/data"' ///
     `"$repo_root/data/processed"' ///
-    `"$repo_root/data/processed/stata"' {
+    `"$repo_root/data/processed/stata"' ///
+    `"$lsms_processed"' ///
+    `"$lsms_asset_prices"' {
     capture mkdir "`dir'"
     mata: st_numscalar("dir_exists", direxists("`dir'"))
     if scalar(dir_exists) == 0 {

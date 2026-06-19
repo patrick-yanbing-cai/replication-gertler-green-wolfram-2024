@@ -36,7 +36,11 @@ Foundation work needed before M3:
   `data/raw/interim` and generated-looking files under `data/raw/lsms/...` as
   staged source/reference inputs.
 - Add a single Stata entrypoint that initializes globals, opens logs, checks
-  dependencies, and runs selected modules in a deterministic order.
+  dependencies, and runs numbered research-step modules in a deterministic
+  order.
+- Keep selector-style invocation out of the normal researcher workflow. The
+  public interface should be opening and running `code/replication/run_replication.do`;
+  lower-level support scripts should sit behind numbered pipeline steps.
 - Check Stata-side dependencies used by audited scripts: `esttab`/`eststo`
   from `estout`, `blindschemes` for `rl2_takeupbywtp.do`, and the `ivregress2`
   command calls in the risk, WTP, and early-adoption IV scripts.
@@ -50,6 +54,13 @@ Shared construction modules that M2 should account for:
 | LSMS support | `c2_build_asset_prices.do`, `c3_build_busasset_prices.do`, `c4_build_lsms_chars.do`, `d11_lsms_vars_build.do` | asset price lookups, `lsms2018_vars.dta`, `income.dta`, `lsms_vars_indiv.dta`, `lsms_vars_hh.dta` |
 | Baseline survey support | `d9_construct_bsvysec_2.do`, `e1_build_bsvysec.do` | `hhvars_baseline.dta` and baseline household section files |
 | Endline survey support | `d10_construct_esvysec_2.do`, `f1_educ_index_prep_female.do`, `f2_educ_index_prep_male.do` | endline household, wellbeing, lock-occurrence, and education-index files |
+
+Current maintained Stata workflow structure:
+
+| Ordered step | Script | Role |
+|---|---|---|
+| Foundation setup | `code/replication/run_replication.do` + `code/replication/setup_globals.do` | Resolve repo-relative paths, create maintained output directories, check dependencies, and open the deterministic Stata log. |
+| Step 1 | `code/replication/01_lsms_support.do` | Build maintained LSMS support outputs under `data/processed/stata/lsms` while preserving the four original source-script boundaries under `code/replication/support/lsms/`. |
 
 ## M3 Stata Table and Figure Modules
 
