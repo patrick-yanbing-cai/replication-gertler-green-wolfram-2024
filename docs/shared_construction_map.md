@@ -67,3 +67,22 @@ construction scripts named in Issue 3.
   `f2_educ_index_prep_male.do`.
 - `key_rep.dta`, repayment data, and IRR interim files should remain explicit
   staged dependencies until a later issue defines their maintained producers.
+
+## Maintained LSMS Output Mapping
+
+The maintained LSMS step preserves the original source-script boundaries but
+routes every generated LSMS support file to `data/processed/stata/lsms` instead
+of writing back into the staged `data/raw/lsms` source tree.
+
+| Original source script | Maintained output |
+|---|---|
+| `c2_build_asset_prices.do` | `data/processed/stata/lsms/Asset prices data/asset_prices_dist.dta` |
+| `c2_build_asset_prices.do` | `data/processed/stata/lsms/Asset prices data/asset_prices_reg.dta` |
+| `c2_build_asset_prices.do` | `data/processed/stata/lsms/Asset prices data/asset_prices_nat.dta` |
+| `c3_build_busasset_prices.do` | `data/processed/stata/lsms/Asset prices data/asset_busprices_dist.dta` |
+| `c3_build_busasset_prices.do` | `data/processed/stata/lsms/Asset prices data/asset_busprices_reg.dta` |
+| `c3_build_busasset_prices.do` | `data/processed/stata/lsms/Asset prices data/asset_busprices_nat.dta` |
+| `c4_build_lsms_chars.do` | `data/processed/stata/lsms/lsms2018_vars.dta` |
+| `d11_lsms_vars_build.do` | `data/processed/stata/lsms/income.dta` |
+| `d11_lsms_vars_build.do` | `data/processed/stata/lsms/lsms_vars_indiv.dta` |
+| `d11_lsms_vars_build.do` | `data/processed/stata/lsms/lsms_vars_hh.dta` |
