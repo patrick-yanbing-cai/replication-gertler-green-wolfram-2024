@@ -56,6 +56,15 @@ display as text "selected module: `selector'"
 display as text "Stata version: " c(stata_version)
 display as text "started: " c(current_date) " " c(current_time)
 
+capture noisily do "$repo_root/code/replication/check_stata_dependencies.do"
+if _rc {
+    local dependency_rc = _rc
+    display as error "completion status: failed"
+    display as error "failed: " c(current_date) " " c(current_time)
+    log close replication
+    exit `dependency_rc'
+}
+
 if "`selector'" == "foundation" {
     display as text "initialized global bsvy_raw: $bsvy_raw"
     display as text "initialized global esvy_raw: $esvy_raw"
@@ -69,6 +78,16 @@ if "`selector'" == "foundation" {
     display as text "initialized global tables: $tables"
     display as text "initialized global figures: $figures"
     display as text "initialized global stata_logs: $stata_logs"
+    display as text "checking maintained generated path processed_stata: $processed_stata"
+    assert_maintained_generated_path "$processed_stata" "processed_stata"
+    assert_stata_intermediate_path "$processed_stata" "processed_stata"
+    display as text "checking maintained generated path tables: $tables"
+    assert_maintained_generated_path "$tables" "tables"
+    display as text "checking maintained generated path figures: $figures"
+    assert_maintained_generated_path "$figures" "figures"
+    display as text "checking maintained generated path stata_logs: $stata_logs"
+    assert_maintained_generated_path "$stata_logs" "stata_logs"
+    display as result "Maintained generated path checks completed."
     display as result "Foundation initialization completed."
 }
 

@@ -85,23 +85,25 @@ The formal replication pipeline will read from `data/raw/`, not directly from `d
 
 ## Stata Replication Entrypoint
 
-Run maintained Stata code through the single top-level entrypoint. The
-entrypoint can be opened directly in Stata's do-file editor and run without
-first changing Stata's working directory. The foundation selector initializes
-repo-relative globals, creates output and log directories, checks required
-staged source directories, writes a deterministic Stata log, and exits without
-running final-output modules:
+Install and verify required user-written Stata dependencies once by opening
+this file in Stata's do-file editor and clicking Run:
 
-```stata
-do "<repo-root>/code/replication/run_replication.do" foundation
+```text
+code/setup/install_stata_dependencies.do
 ```
 
-From a shell in the repository root with Stata on `PATH`, the equivalent batch
-command is:
+Then run maintained Stata code through the single top-level replication
+entrypoint. The entrypoint can be opened directly in Stata's do-file editor and
+run without first changing Stata's working directory. Opening this file and
+clicking Run starts the foundation workflow by default:
 
-```bash
-stata-mp -b do code/replication/run_replication.do foundation
+```text
+code/replication/run_replication.do
 ```
+
+The foundation workflow initializes repo-relative globals, creates output and
+log directories, checks required staged source directories, writes a
+deterministic Stata log, and exits without running final-output modules.
 
 The foundation log is written to:
 
@@ -117,10 +119,16 @@ maintained Stata intermediates should be written under `data/processed/stata`.
 
 ## Requirements
 
-The maintained replication code will use:
+The maintained replication code uses:
 
 - Stata
 - Python 3.11+
+
+Stata dependency setup is maintained as clickable executable Stata code in
+`code/setup/install_stata_dependencies.do`. The foundation workflow checks
+dependencies in one preflight run and reports failures in
+`output/logs/stata/run_foundation.smcl`; the replication entrypoint does not
+auto-install Stata packages.
 
 R, Matlab, and Jupyter notebooks may exist in the original Dataverse package, but they are not part of this repo's maintained pipeline.
 
