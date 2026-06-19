@@ -60,7 +60,8 @@ construction scripts named in Issue 3.
 - The maintained LSMS support step, `code/replication/01_lsms_support.do`,
   covers `c2_build_asset_prices.do`, `c3_build_busasset_prices.do`,
   `c4_build_lsms_chars.do`, and `d11_lsms_vars_build.do`.
-- A future baseline survey support module can cover
+- The maintained baseline survey support step,
+  `code/replication/02_baseline_support.do`, covers
   `d9_construct_bsvysec_2.do` and `e1_build_bsvysec.do`.
 - A future endline survey support module can cover
   `d10_construct_esvysec_2.do`, `f1_educ_index_prep_female.do`, and
@@ -86,3 +87,40 @@ of writing back into the staged `data/raw/lsms` source tree.
 | `d11_lsms_vars_build.do` | `data/processed/stata/lsms/income.dta` |
 | `d11_lsms_vars_build.do` | `data/processed/stata/lsms/lsms_vars_indiv.dta` |
 | `d11_lsms_vars_build.do` | `data/processed/stata/lsms/lsms_vars_hh.dta` |
+
+## Maintained Baseline Survey Output Mapping
+
+The maintained baseline support step preserves the original
+`d9_construct_bsvysec_2.do` and `e1_build_bsvysec.do` source-script boundaries.
+It reads pre-staged baseline clean inputs from `data/raw/baseline_survey/clean`
+where no maintained producer has been identified, consumes maintained LSMS asset
+price outputs from `data/processed/stata/lsms/Asset prices data`, and routes
+newly generated baseline support files to
+`data/processed/stata/baseline_survey`.
+
+| Original source script | Maintained output |
+|---|---|
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/4_energy.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/4_energy_hh.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/5_shs.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/5_shs_hh.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/6_solarlantern.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/6_solarlantern_hh.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/7_landhome.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/7_landhome_hh.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/8_assets.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/8_assets_hh.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/9_busassets.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/10A_coop.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/10A_coop_hh.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/10B_loans.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/10B_loans_hh.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/10C_savings.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/10C_savings_hh.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/10D_lending.dta` |
+| `d9_construct_bsvysec_2.do` | `data/processed/stata/baseline_survey/10D_lending_hh.dta` |
+| `e1_build_bsvysec.do` | `data/processed/stata/baseline_survey/hhvars_baseline.dta` |
+
+M3 Stata consumers should read the maintained
+`data/processed/stata/baseline_survey/hhvars_baseline.dta` path instead of the
+staged reference copy under `data/raw/baseline_survey/clean`.

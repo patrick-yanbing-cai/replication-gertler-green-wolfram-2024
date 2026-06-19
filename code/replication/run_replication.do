@@ -63,6 +63,14 @@ if `pipeline_rc' == 0 {
     }
 }
 
+if `pipeline_rc' == 0 {
+    display as text "Step 2: baseline survey support construction"
+    capture noisily do "$repo_root/code/replication/02_baseline_support.do"
+    if _rc {
+        local pipeline_rc = _rc
+    }
+}
+
 if `pipeline_rc' {
     display as error "completion status: failed"
     display as error "failed: " c(current_date) " " c(current_time)

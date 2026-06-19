@@ -51,14 +51,18 @@ The original package is not tracked by git.
 |       |-- run_replication.do          # single clickable Stata entrypoint
 |       |-- 00_header.do                # Step 0: globals, paths, guards, dependency checks
 |       |-- 01_lsms_support.do          # Step 1: maintained LSMS support outputs
+|       |-- 02_baseline_support.do      # Step 2: maintained baseline survey support outputs
 |       `-- support/
 |           |-- stata/
 |           |   `-- check_dependencies.do
-|           `-- lsms/
-|               |-- c2_build_asset_prices.do
-|               |-- c3_build_busasset_prices.do
-|               |-- c4_build_lsms_chars.do
-|               `-- d11_lsms_vars_build.do
+|           |-- lsms/
+|           |   |-- c2_build_asset_prices.do
+|           |   |-- c3_build_busasset_prices.do
+|           |   |-- c4_build_lsms_chars.do
+|           |   `-- d11_lsms_vars_build.do
+|           `-- baseline/
+|               |-- d9_construct_bsvysec_2.do
+|               `-- e1_build_bsvysec.do
 |-- data/
 |   |-- raw/                            # generated from dataverse_files/, not tracked
 |   `-- processed/                      # generated intermediate data, not tracked
@@ -115,10 +119,10 @@ code/replication/run_replication.do
 
 The ordered workflow uses `00_header.do` for Step 0 header, path, and
 dependency checks, then runs numbered research steps. The current maintained
-research step is `01_lsms_support.do`, which builds LSMS support intermediates
-needed by later baseline and final-output modules. Planned later steps should
-continue the same numbering pattern, such as `02_baseline_support.do` and
-`03_endline_support.do`.
+research steps are `01_lsms_support.do`, which builds LSMS support
+intermediates, and `02_baseline_support.do`, which builds baseline survey
+support intermediates. Planned later steps should continue the same numbering
+pattern, such as `03_endline_support.do`.
 
 The replication log is written to:
 
@@ -129,6 +133,10 @@ output/logs/stata/run_replication.smcl
 Maintained LSMS support outputs are written under `data/processed/stata/lsms`,
 including asset price lookups and LSMS income, individual, and household support
 datasets.
+
+Maintained baseline survey support outputs are written under
+`data/processed/stata/baseline_survey`, including `hhvars_baseline.dta` for
+later Stata final-output modules.
 
 Maintained table and figure outputs are written under `output/results/`.
 Author-provided staged intermediates remain under `data/raw/interim`, while
