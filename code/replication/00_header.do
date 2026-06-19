@@ -43,6 +43,7 @@ global lsms2018 "$repo_root/data/raw/lsms/UGA_2018_UNPS_v01_M_STATA12"
 global lsms_processed "$processed_stata/lsms"
 global lsms_asset_prices "$lsms_processed/Asset prices data"
 global bsvy_processed "$processed_stata/baseline_survey"
+global esvy_processed "$processed_stata/endline_survey"
 
 ***********************
 ** Merged data paths **
@@ -76,7 +77,8 @@ foreach dir in ///
     `"$repo_root/data/processed/stata"' ///
     `"$lsms_processed"' ///
     `"$lsms_asset_prices"' ///
-    `"$bsvy_processed"' {
+    `"$bsvy_processed"' ///
+    `"$esvy_processed"' {
     capture mkdir "`dir'"
     mata: st_numscalar("dir_exists", direxists("`dir'"))
     if scalar(dir_exists) == 0 {
@@ -164,6 +166,7 @@ if "`header_mode'" == "verify" {
     display as text "initialized global lsms_processed: $lsms_processed"
     display as text "initialized global lsms_asset_prices: $lsms_asset_prices"
     display as text "initialized global bsvy_processed: $bsvy_processed"
+    display as text "initialized global esvy_processed: $esvy_processed"
     display as text "initialized global merged: $merged"
     display as text "initialized global repay_clean: $repay_clean"
     display as text "initialized global tables: $tables"
@@ -182,6 +185,9 @@ if "`header_mode'" == "verify" {
     display as text "checking maintained generated path bsvy_processed: $bsvy_processed"
     assert_maintained_generated_path "$bsvy_processed" "bsvy_processed"
     assert_stata_intermediate_path "$bsvy_processed" "bsvy_processed"
+    display as text "checking maintained generated path esvy_processed: $esvy_processed"
+    assert_maintained_generated_path "$esvy_processed" "esvy_processed"
+    assert_stata_intermediate_path "$esvy_processed" "esvy_processed"
     display as text "checking maintained generated path tables: $tables"
     assert_maintained_generated_path "$tables" "tables"
     display as text "checking maintained generated path figures: $figures"

@@ -63,7 +63,7 @@ Current maintained Stata workflow structure:
 | Step 0 | `code/replication/00_header.do` | Resolve repo-relative paths, create maintained output directories, check source paths, and verify Stata dependencies. |
 | Step 1 | `code/replication/01_lsms_support.do` | Build maintained LSMS support outputs under `data/processed/stata/lsms` while preserving the four original source-script boundaries under `code/replication/support/lsms/`. |
 | Step 2 | `code/replication/02_baseline_support.do` | Build maintained baseline survey support outputs under `data/processed/stata/baseline_survey` while preserving the `d9_construct_bsvysec_2.do` and `e1_build_bsvysec.do` source-script boundaries under `code/replication/support/baseline/`. |
-| Planned Step 3 | `code/replication/03_endline_support.do` | Build maintained endline survey support outputs when the endline support issue is implemented. |
+| Step 3 | `code/replication/03_endline_support.do` | Build maintained endline survey support outputs under `data/processed/stata/endline_survey` while preserving the `d10_construct_esvysec_2.do`, `f1_educ_index_prep_female.do`, and `f2_educ_index_prep_male.do` source-script boundaries under `code/replication/support/endline/`. |
 
 ## M3 Stata Table and Figure Modules
 
@@ -76,17 +76,17 @@ to one original final-output script and one planned maintained module in
 |---|---|---|
 | `g4_endline_educ_hh` | `endline_educ_hh.tex` | `data/raw/merged/key_rep.dta`; `data/raw/endline_survey/clean/2_educ_indiv.dta`; `2_educ_hh.dta`; script-local `num_520e_info` |
 | `g4_endline_educ_hh_full` | `endline_educ_hh_full.tex` | same education household inputs as `g4_endline_educ_hh` |
-| `g4_endline_educ_indiv` | `endline_educ_indiv.tex` | `key_rep.dta`; `2_educ_indiv.dta`; `femaleeduc.dta`; `maleeduc.dta`; script-local `indiv` |
-| `g5_endline_analysis` | `assets99_lvl_ITT_v2.tex`; `assetsbal99_lvl_ITT_v2.tex`; `shock_A.tex`; `shock_B.tex` | `key_rep.dta`; `3A_assets_hh.dta`; `6_bsl.dta`; maintained baseline `data/processed/stata/baseline_survey/hhvars_baseline.dta`; `7_wellbeing_hh.dta` |
+| `g4_endline_educ_indiv` | `endline_educ_indiv.tex` | `key_rep.dta`; staged `data/raw/endline_survey/clean/2_educ_indiv.dta`; maintained endline `data/processed/stata/endline_survey/femaleeduc.dta`; maintained endline `data/processed/stata/endline_survey/maleeduc.dta`; script-local `indiv` |
+| `g5_endline_analysis` | `assets99_lvl_ITT_v2.tex`; `assetsbal99_lvl_ITT_v2.tex`; `shock_A.tex`; `shock_B.tex` | `key_rep.dta`; staged `data/raw/endline_survey/clean/3A_assets_hh.dta`; staged `data/raw/endline_survey/clean/6_bsl.dta`; maintained baseline `data/processed/stata/baseline_survey/hhvars_baseline.dta`; maintained endline `data/processed/stata/endline_survey/7_wellbeing_hh.dta` |
 | `g10_sac_regression` | `sacreg.tex` | `2_educ_indiv.dta`; `key_rep.dta`; script-local `num_520e_info` |
 | `g13_endline_moneyborrowed` | `endline_moneyborrowed.tex` | `key_rep.dta`; `3A_assets_hh.dta`; `6_bsl.dta`; maintained baseline `data/processed/stata/baseline_survey/hhvars_baseline.dta` |
 | `g14_endline_income` | `income99_lvl_ITT.tex` | `key_rep.dta`; `adult_labor_supply_hh.dta` |
 | `g15_compliance_day200` | `compliance_tab.tex` | `key_rep.dta`; `fenix_repay_extend_07172020_rep.dta`; maintained baseline `data/processed/stata/baseline_survey/hhvars_baseline.dta`; script-local `complierinfo` |
 | `h1_iv_ols_main` | `LASMH_repay_LATE_100.tex`; `LASMH_repay_LATE_150.tex`; `LASMH_repay_LATE_200.tex`; `LASMH_repay_ITT_100.tex`; `LASMH_repay_ITT_150.tex`; `LASMH_repay_ITT_200.tex`; `LASMH_complete_LATE_110.tex`; `LASMH_complete_LATE_150.tex`; `LASMH_complete_LATE_200.tex`; `LASMH_complete_ITT_110.tex`; `LASMH_complete_ITT_150.tex`; `LASMH_complete_ITT_200.tex` | `fenix_repay_extend_07172020_rep.dta`; `key_rep.dta`; script-local `all`, `data*_strict`, and `as_sample` |
 | `h2_iv_ols_riskintcat` | `LASMH_repay_riskinteract_LATE.tex`; `LASMH_repay_riskinteract_ITT.tex`; `LASMH_complete_riskinteract_LATE.tex`; `LASMH_complete_riskinteract_ITT.tex` | `fenix_repay_extend_07172020_rep.dta`; `key_rep.dta`; script-local `all`, `data150_strict`, and `data200_strict` |
-| `h3_iv_ols_wtpintcat` | `LASMH_repay_wtpinteract_LATE.tex`; `LASMH_complete_wtpinteract_LATE.tex` | `fenix_repay_extend_07172020_rep.dta`; `key_rep.dta`; `9_lockedoccurences_hh.dta`; script-local `all`, `data150_strict`, and `data200_strict` |
+| `h3_iv_ols_wtpintcat` | `LASMH_repay_wtpinteract_LATE.tex`; `LASMH_complete_wtpinteract_LATE.tex` | `fenix_repay_extend_07172020_rep.dta`; `key_rep.dta`; maintained endline `data/processed/stata/endline_survey/9_lockedoccurences_hh.dta`; script-local `all`, `data150_strict`, and `data200_strict` |
 | `h4_iv_ols_earlyadopt` | `LASMH_repay_earlyadopt_LATE_100.tex`; `LASMH_repay_earlyadopt_LATE_150.tex`; `LASMH_repay_earlyadopt_LATE_200.tex`; `LASMH_repay_earlyadopt_ITT_100.tex`; `LASMH_repay_earlyadopt_ITT_150.tex`; `LASMH_repay_earlyadopt_ITT_200.tex`; `LASMH_complete_earlyadopt_LATE_110.tex`; `LASMH_complete_earlyadopt_LATE_150.tex`; `LASMH_complete_earlyadopt_LATE_200.tex`; `LASMH_complete_earlyadopt_ITT_110.tex`; `LASMH_complete_earlyadopt_ITT_150.tex`; `LASMH_complete_earlyadopt_ITT_200.tex` | `fenix_repay_extend_07172020_rep.dta`; `key_rep.dta`; script-local `all` and `data*_bsvy_allrestrict_new` |
-| `rl2_takeupbywtp` | `takeupbywtp_dif.png` | `key_rep.dta`; maintained baseline `data/processed/stata/baseline_survey/hhvars_baseline.dta`; `9_lockedoccurences_hh.dta`; `blindschemes`/`plottig` graph scheme |
+| `rl2_takeupbywtp` | `takeupbywtp_dif.png` | `key_rep.dta`; maintained baseline `data/processed/stata/baseline_survey/hhvars_baseline.dta`; maintained endline `data/processed/stata/endline_survey/9_lockedoccurences_hh.dta`; `blindschemes`/`plottig` graph scheme |
 
 ## M4 Python Replacement Modules
 
