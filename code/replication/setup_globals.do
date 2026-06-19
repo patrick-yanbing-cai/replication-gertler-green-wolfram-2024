@@ -89,3 +89,54 @@ foreach required_source in ///
         exit 601
     }
 }
+
+capture program drop assert_maintained_generated_path
+program define assert_maintained_generated_path
+    version 16
+    args path label
+
+    if "`path'" == "" {
+        display as error "Maintained generated path is empty: `label'"
+        exit 198
+    }
+
+    local normalized "`path'"
+    local normalized = subinstr("`normalized'", char(92), "/", .)
+    local normalized = lower("`normalized'")
+
+    local raw_root "$repo_root/data/raw"
+    local raw_root = subinstr("`raw_root'", char(92), "/", .)
+    local raw_root = lower("`raw_root'")
+    local raw_prefix "`raw_root'/"
+
+    if "`normalized'" == "`raw_root'" | substr("`normalized'", 1, length("`raw_prefix'")) == "`raw_prefix'" {
+        display as error "Maintained generated path resolves under data/raw: `label' = `path'"
+        display as error "Use $processed_stata for generated Stata intermediates, or output/results for final outputs."
+        exit 198
+    }
+end
+
+capture program drop assert_stata_intermediate_path
+program define assert_stata_intermediate_path
+    version 16
+    args path label
+
+    if "`path'" == "" {
+        display as error "Maintained Stata intermediate path is empty: `label'"
+        exit 198
+    }
+
+    local normalized "`path'"
+    local normalized = subinstr("`normalized'", char(92), "/", .)
+    local normalized = lower("`normalized'")
+
+    local processed_root "$processed_stata"
+    local processed_root = subinstr("`processed_root'", char(92), "/", .)
+    local processed_root = lower("`processed_root'")
+    local processed_prefix "`processed_root'/"
+
+    if !("`normalized'" == "`processed_root'" | substr("`normalized'", 1, length("`processed_prefix'")) == "`processed_prefix'") {
+        display as error "Maintained Stata intermediate path must resolve under data/processed/stata: `label' = `path'"
+        exit 198
+    }
+end
