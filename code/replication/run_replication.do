@@ -79,6 +79,14 @@ if `pipeline_rc' == 0 {
     }
 }
 
+if `pipeline_rc' == 0 {
+    display as text "Step 4: Stata final-output construction"
+    capture noisily do "$repo_root/code/replication/04_final_outputs.do"
+    if _rc {
+        local pipeline_rc = _rc
+    }
+}
+
 if `pipeline_rc' {
     display as error "completion status: failed"
     display as error "failed: " c(current_date) " " c(current_time)
