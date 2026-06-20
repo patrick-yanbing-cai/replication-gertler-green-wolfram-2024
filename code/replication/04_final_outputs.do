@@ -187,4 +187,30 @@ if _rc {
 }
 display as result "Wrote maintained final table output: $tables/compliance_tab.tex"
 
+display as text "Step 4.9: main repayment and completion ITT/LATE tables (h1_iv_ols_main.do)"
+display as text "BEGIN original source boundary: h1_iv_ols_main.do"
+do "$repo_root/code/replication/final_outputs/h1_iv_ols_main.do"
+display as text "END original source boundary: h1_iv_ols_main.do"
+
+foreach expected_output in ///
+    "LASMH_repay_LATE_100.tex" ///
+    "LASMH_repay_LATE_150.tex" ///
+    "LASMH_repay_LATE_200.tex" ///
+    "LASMH_repay_ITT_100.tex" ///
+    "LASMH_repay_ITT_150.tex" ///
+    "LASMH_repay_ITT_200.tex" ///
+    "LASMH_complete_LATE_110.tex" ///
+    "LASMH_complete_LATE_150.tex" ///
+    "LASMH_complete_LATE_200.tex" ///
+    "LASMH_complete_ITT_110.tex" ///
+    "LASMH_complete_ITT_150.tex" ///
+    "LASMH_complete_ITT_200.tex" {
+    capture confirm file "$tables/`expected_output'"
+    if _rc {
+        display as error "Missing expected maintained final table output: $tables/`expected_output'"
+        exit 601
+    }
+    display as result "Wrote maintained final table output: $tables/`expected_output'"
+}
+
 display as result "Stata final-output construction completed."
