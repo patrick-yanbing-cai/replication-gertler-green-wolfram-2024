@@ -64,6 +64,7 @@ Current maintained Stata workflow structure:
 | Step 1 | `code/replication/01_lsms_support.do` | Build maintained LSMS support outputs under `data/processed/stata/lsms` while preserving the four original source-script boundaries under `code/replication/support/lsms/`. |
 | Step 2 | `code/replication/02_baseline_support.do` | Build maintained baseline survey support outputs under `data/processed/stata/baseline_survey` while preserving the `d9_construct_bsvysec_2.do` and `e1_build_bsvysec.do` source-script boundaries under `code/replication/support/baseline/`. |
 | Step 3 | `code/replication/03_endline_support.do` | Build maintained endline survey support outputs under `data/processed/stata/endline_survey` while preserving the `d10_construct_esvysec_2.do`, `f1_educ_index_prep_female.do`, and `f2_educ_index_prep_male.do` source-script boundaries under `code/replication/support/endline/`. |
+| Step 4 | `code/replication/04_final_outputs.do` | Build maintained Stata final outputs under `output/results/tables` and `output/results/figures`, starting with the M3 `g4_endline_educ_hh` tracer bullet. |
 
 ## M3 Stata Table and Figure Modules
 
