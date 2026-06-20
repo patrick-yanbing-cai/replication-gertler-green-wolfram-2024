@@ -131,4 +131,16 @@ foreach expected_output in ///
     display as result "Wrote maintained final table output: $tables/`expected_output'"
 }
 
+display as text "Step 4.5: SAC regression table (g10_sac_regression.do)"
+display as text "BEGIN original source boundary: g10_sac_regression.do"
+do "$repo_root/code/replication/final_outputs/g10_sac_regression.do"
+display as text "END original source boundary: g10_sac_regression.do"
+
+capture confirm file "$tables/sacreg.tex"
+if _rc {
+    display as error "Missing expected maintained final table output: $tables/sacreg.tex"
+    exit 601
+}
+display as result "Wrote maintained final table output: $tables/sacreg.tex"
+
 display as result "Stata final-output construction completed."
