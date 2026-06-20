@@ -13,6 +13,11 @@ if "$tables" == "" {
     exit 198
 }
 
+if "$figures" == "" {
+    display as error "figures global is not defined. Run code/replication/00_header.do before final outputs."
+    exit 198
+}
+
 if "$esvy_clean" == "" {
     display as error "esvy_clean global is not defined. Run code/replication/00_header.do before final outputs."
     exit 198
@@ -39,14 +44,16 @@ if "$repay_clean" == "" {
 }
 
 display as text "Final table output root: $tables"
+display as text "Final figure output root: $figures"
 display as text "Endline staged clean source root: $esvy_clean"
 display as text "Baseline maintained support root: $bsvy_processed"
 display as text "Endline maintained support root: $esvy_processed"
 display as text "Merged staged source root: $merged"
 display as text "Repayment staged source root: $repay_clean"
-display as text "Intentional difference from staged reference files: maintained final tables are written under output/results/tables, not data/raw/reference_outputs/tables."
+display as text "Intentional difference from staged reference files: maintained final outputs are written under output/results, not data/raw/reference_outputs."
 
 assert_maintained_generated_path "$tables" "tables"
+assert_maintained_generated_path "$figures" "figures"
 assert_maintained_generated_path "$bsvy_processed" "bsvy_processed"
 assert_maintained_generated_path "$esvy_processed" "esvy_processed"
 assert_stata_intermediate_path "$bsvy_processed" "bsvy_processed"
@@ -273,5 +280,17 @@ foreach expected_output in ///
     }
     display as result "Wrote maintained final table output: $tables/`expected_output'"
 }
+
+display as text "Step 4.13: take-up by WTP figure (rl2_takeupbywtp.do)"
+display as text "BEGIN original source boundary: rl2_takeupbywtp.do"
+do "$repo_root/code/replication/final_outputs/rl2_takeupbywtp.do"
+display as text "END original source boundary: rl2_takeupbywtp.do"
+
+capture confirm file "$figures/takeupbywtp_dif.png"
+if _rc {
+    display as error "Missing expected maintained final figure output: $figures/takeupbywtp_dif.png"
+    exit 601
+}
+display as result "Wrote maintained final figure output: $figures/takeupbywtp_dif.png"
 
 display as result "Stata final-output construction completed."
