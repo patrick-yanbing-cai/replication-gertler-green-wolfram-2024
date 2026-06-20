@@ -213,4 +213,22 @@ foreach expected_output in ///
     display as result "Wrote maintained final table output: $tables/`expected_output'"
 }
 
+display as text "Step 4.10: risk-interaction repayment and completion ITT/LATE tables (h2_iv_ols_riskintcat.do)"
+display as text "BEGIN original source boundary: h2_iv_ols_riskintcat.do"
+do "$repo_root/code/replication/final_outputs/h2_iv_ols_riskintcat.do"
+display as text "END original source boundary: h2_iv_ols_riskintcat.do"
+
+foreach expected_output in ///
+    "LASMH_repay_riskinteract_LATE.tex" ///
+    "LASMH_repay_riskinteract_ITT.tex" ///
+    "LASMH_complete_riskinteract_LATE.tex" ///
+    "LASMH_complete_riskinteract_ITT.tex" {
+    capture confirm file "$tables/`expected_output'"
+    if _rc {
+        display as error "Missing expected maintained final table output: $tables/`expected_output'"
+        exit 601
+    }
+    display as result "Wrote maintained final table output: $tables/`expected_output'"
+}
+
 display as result "Stata final-output construction completed."
