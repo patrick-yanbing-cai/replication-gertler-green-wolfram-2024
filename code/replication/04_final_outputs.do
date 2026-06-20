@@ -56,4 +56,16 @@ if _rc {
 }
 display as result "Wrote maintained final table output: $tables/endline_educ_hh.tex"
 
+display as text "Step 4.2: endline household education table with households without school-aged children (g4_endline_educ_hh_full.do)"
+display as text "BEGIN original source boundary: g4_endline_educ_hh_full.do"
+do "$repo_root/code/replication/final_outputs/g4_endline_educ_hh_full.do"
+display as text "END original source boundary: g4_endline_educ_hh_full.do"
+
+capture confirm file "$tables/endline_educ_hh_full.tex"
+if _rc {
+    display as error "Missing expected maintained final table output: $tables/endline_educ_hh_full.tex"
+    exit 601
+}
+display as result "Wrote maintained final table output: $tables/endline_educ_hh_full.tex"
+
 display as result "Stata final-output construction completed."
