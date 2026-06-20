@@ -1,0 +1,27 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Education Outcomes, Household-level, Including Households without School-Aged Children\label{endline\_educ\_hh\_full}}
+\begin{tabular}{l*{8}{c}}
+\toprule
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}&\multicolumn{1}{c}{(7)}&\multicolumn{1}{c}{(8)}\\
+                    &\multicolumn{1}{c}{Enrollment}&\multicolumn{1}{c}{Enrollment}&\multicolumn{1}{c}{Days absent}&\multicolumn{1}{c}{Days absent}&\multicolumn{1}{c}{Log school expenditures}&\multicolumn{1}{c}{Log school expenditures}&\multicolumn{1}{c}{Education index}&\multicolumn{1}{c}{Education index}\\
+\midrule
+Pooled              &        0.06\sym{*}  &                     &       -1.32         &                     &        0.26\sym{*}  &                     &        0.16\sym{*}  &                     \\
+                    &      (0.03)         &                     &      (0.91)         &                     &      (0.15)         &                     &      (0.08)         &                     \\\addlinespace
+Secured             &                     &        0.08\sym{**} &                     &       -1.92\sym{*}  &                     &        0.36\sym{**} &                     &        0.22\sym{**} \\
+                    &                     &      (0.04)         &                     &      (1.00)         &                     &      (0.17)         &                     &      (0.09)         \\\addlinespace
+Surprise Unsecured  &                     &        0.05         &                     &       -0.94         &                     &        0.23         &                     &        0.14         \\
+                    &                     &      (0.03)         &                     &      (0.96)         &                     &      (0.16)         &                     &      (0.09)         \\\addlinespace
+Unsecured           &                     &        0.06\sym{*}  &                     &       -1.32         &                     &        0.24         &                     &        0.16\sym{*}  \\
+                    &                     &      (0.03)         &                     &      (0.95)         &                     &      (0.16)         &                     &      (0.09)         \\\addlinespace
+Pooled $\times$ Number of School-Aged Children&       -0.01         &       -0.01         &        0.29         &        0.29         &       -0.03         &       -0.03         &       -0.03         &       -0.03         \\
+                    &      (0.01)         &      (0.01)         &      (0.25)         &      (0.25)         &      (0.04)         &      (0.04)         &      (0.02)         &      (0.02)         \\\addlinespace
+N SAC at endline    &        0.08\sym{***}&        0.08\sym{***}&       -2.70\sym{***}&       -2.70\sym{***}&        0.39\sym{***}&        0.39\sym{***}&        0.23\sym{***}&        0.23\sym{***}\\
+                    &      (0.01)         &      (0.01)         &      (0.23)         &      (0.23)         &      (0.04)         &      (0.04)         &      (0.02)         &      (0.02)         \\\addlinespace
+Constant            &        0.55\sym{***}&        0.55\sym{***}&       13.72\sym{***}&       13.72\sym{***}&        2.33\sym{***}&        2.33\sym{***}&       -0.68\sym{***}&       -0.68\sym{***}\\
+                    &      (0.03)         &      (0.03)         &      (0.82)         &      (0.82)         &      (0.14)         &      (0.14)         &      (0.08)         &      (0.08)         \\
+\midrule
+Observations        &        1883         &        1883         &        1883         &        1883         &        1883         &        1883         &        1883         &        1883         \\
+\bottomrule
+\end{tabular}
+\end{table}
