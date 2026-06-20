@@ -52,7 +52,8 @@ foreach required_input in ///
     `"$esvy_clean/2_educ_indiv.dta"' ///
     `"$esvy_clean/2_educ_hh.dta"' ///
     `"$esvy_clean/3A_assets_hh.dta"' ///
-    `"$esvy_clean/6_bsl.dta"' {
+    `"$esvy_clean/6_bsl.dta"' ///
+    `"$esvy_clean/adult_labor_supply_hh.dta"' {
     capture confirm file "`required_input'"
     if _rc {
         display as error "Missing required staged final-output input: `required_input'"
@@ -154,5 +155,17 @@ if _rc {
     exit 601
 }
 display as result "Wrote maintained final table output: $tables/endline_moneyborrowed.tex"
+
+display as text "Step 4.7: endline adult income table (g14_endline_income.do)"
+display as text "BEGIN original source boundary: g14_endline_income.do"
+do "$repo_root/code/replication/final_outputs/g14_endline_income.do"
+display as text "END original source boundary: g14_endline_income.do"
+
+capture confirm file "$tables/income99_lvl_ITT.tex"
+if _rc {
+    display as error "Missing expected maintained final table output: $tables/income99_lvl_ITT.tex"
+    exit 601
+}
+display as result "Wrote maintained final table output: $tables/income99_lvl_ITT.tex"
 
 display as result "Stata final-output construction completed."
