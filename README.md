@@ -49,10 +49,13 @@ The original package is not tracked by git.
 |   |   `-- install_stata_dependencies.do
 |   `-- replication/
 |       |-- run_replication.do          # single clickable Stata entrypoint
+|       |-- run_python_outputs.py       # maintained Python final-output entrypoint
 |       |-- 00_header.do                # Step 0: globals, paths, guards, dependency checks
 |       |-- 01_lsms_support.do          # Step 1: maintained LSMS support outputs
 |       |-- 02_baseline_support.do      # Step 2: maintained baseline survey support outputs
 |       |-- 03_endline_support.do       # Step 3: maintained endline survey support outputs
+|       |-- python_outputs/
+|       |   `-- repayment_rate_figures.py
 |       `-- support/
 |           |-- stata/
 |           |   `-- check_dependencies.do
@@ -150,6 +153,20 @@ and female/male education-index files for later Stata final-output modules.
 Maintained table and figure outputs are written under `output/results/`.
 Author-provided staged intermediates remain under `data/raw/interim`, while
 maintained Stata intermediates should be written under `data/processed/stata`.
+
+---
+
+## Python Final Outputs
+
+Maintained non-Stata final outputs are generated through the Python entrypoint:
+
+```bash
+python code/replication/run_python_outputs.py
+```
+
+The current Python final-output module generates the Figure 4 repayment and
+completion rate panels from staged repayment data under `data/raw/repayment`
+and writes the PDFs under `output/results/figures`.
 
 ---
 
