@@ -75,7 +75,8 @@ foreach required_input in ///
     `"$bsvy_processed/hhvars_baseline.dta"' ///
     `"$esvy_processed/femaleeduc.dta"' ///
     `"$esvy_processed/maleeduc.dta"' ///
-    `"$esvy_processed/7_wellbeing_hh.dta"' {
+    `"$esvy_processed/7_wellbeing_hh.dta"' ///
+    `"$esvy_processed/9_lockedoccurences_hh.dta"' {
     capture confirm file "`required_input'"
     if _rc {
         display as error "Missing required maintained final-output support input: `required_input'"
@@ -223,6 +224,22 @@ foreach expected_output in ///
     "LASMH_repay_riskinteract_ITT.tex" ///
     "LASMH_complete_riskinteract_LATE.tex" ///
     "LASMH_complete_riskinteract_ITT.tex" {
+    capture confirm file "$tables/`expected_output'"
+    if _rc {
+        display as error "Missing expected maintained final table output: $tables/`expected_output'"
+        exit 601
+    }
+    display as result "Wrote maintained final table output: $tables/`expected_output'"
+}
+
+display as text "Step 4.11: WTP-interaction repayment and completion LATE tables (h3_iv_ols_wtpintcat.do)"
+display as text "BEGIN original source boundary: h3_iv_ols_wtpintcat.do"
+do "$repo_root/code/replication/final_outputs/h3_iv_ols_wtpintcat.do"
+display as text "END original source boundary: h3_iv_ols_wtpintcat.do"
+
+foreach expected_output in ///
+    "LASMH_repay_wtpinteract_LATE.tex" ///
+    "LASMH_complete_wtpinteract_LATE.tex" {
     capture confirm file "$tables/`expected_output'"
     if _rc {
         display as error "Missing expected maintained final table output: $tables/`expected_output'"
