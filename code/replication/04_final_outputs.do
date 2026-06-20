@@ -248,4 +248,30 @@ foreach expected_output in ///
     display as result "Wrote maintained final table output: $tables/`expected_output'"
 }
 
+display as text "Step 4.12: early-adoption repayment and completion ITT/LATE tables (h4_iv_ols_earlyadopt.do)"
+display as text "BEGIN original source boundary: h4_iv_ols_earlyadopt.do"
+do "$repo_root/code/replication/final_outputs/h4_iv_ols_earlyadopt.do"
+display as text "END original source boundary: h4_iv_ols_earlyadopt.do"
+
+foreach expected_output in ///
+    "LASMH_repay_earlyadopt_LATE_100.tex" ///
+    "LASMH_repay_earlyadopt_LATE_150.tex" ///
+    "LASMH_repay_earlyadopt_LATE_200.tex" ///
+    "LASMH_repay_earlyadopt_ITT_100.tex" ///
+    "LASMH_repay_earlyadopt_ITT_150.tex" ///
+    "LASMH_repay_earlyadopt_ITT_200.tex" ///
+    "LASMH_complete_earlyadopt_LATE_110.tex" ///
+    "LASMH_complete_earlyadopt_LATE_150.tex" ///
+    "LASMH_complete_earlyadopt_LATE_200.tex" ///
+    "LASMH_complete_earlyadopt_ITT_110.tex" ///
+    "LASMH_complete_earlyadopt_ITT_150.tex" ///
+    "LASMH_complete_earlyadopt_ITT_200.tex" {
+    capture confirm file "$tables/`expected_output'"
+    if _rc {
+        display as error "Missing expected maintained final table output: $tables/`expected_output'"
+        exit 601
+    }
+    display as result "Wrote maintained final table output: $tables/`expected_output'"
+}
+
 display as result "Stata final-output construction completed."
