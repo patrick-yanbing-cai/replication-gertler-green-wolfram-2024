@@ -33,11 +33,17 @@ if "$merged" == "" {
     exit 198
 }
 
+if "$repay_clean" == "" {
+    display as error "repay_clean global is not defined. Run code/replication/00_header.do before final outputs."
+    exit 198
+}
+
 display as text "Final table output root: $tables"
 display as text "Endline staged clean source root: $esvy_clean"
 display as text "Baseline maintained support root: $bsvy_processed"
 display as text "Endline maintained support root: $esvy_processed"
 display as text "Merged staged source root: $merged"
+display as text "Repayment staged source root: $repay_clean"
 display as text "Intentional difference from staged reference files: maintained final tables are written under output/results/tables, not data/raw/reference_outputs/tables."
 
 assert_maintained_generated_path "$tables" "tables"
@@ -53,7 +59,8 @@ foreach required_input in ///
     `"$esvy_clean/2_educ_hh.dta"' ///
     `"$esvy_clean/3A_assets_hh.dta"' ///
     `"$esvy_clean/6_bsl.dta"' ///
-    `"$esvy_clean/adult_labor_supply_hh.dta"' {
+    `"$esvy_clean/adult_labor_supply_hh.dta"' ///
+    `"$repay_clean/fenix_repay_extend_07172020_rep.dta"' {
     capture confirm file "`required_input'"
     if _rc {
         display as error "Missing required staged final-output input: `required_input'"
@@ -167,5 +174,17 @@ if _rc {
     exit 601
 }
 display as result "Wrote maintained final table output: $tables/income99_lvl_ITT.tex"
+
+display as text "Step 4.8: day-200 compliance table (g15_compliance_day200.do)"
+display as text "BEGIN original source boundary: g15_compliance_day200.do"
+do "$repo_root/code/replication/final_outputs/g15_compliance_day200.do"
+display as text "END original source boundary: g15_compliance_day200.do"
+
+capture confirm file "$tables/compliance_tab.tex"
+if _rc {
+    display as error "Missing expected maintained final table output: $tables/compliance_tab.tex"
+    exit 601
+}
+display as result "Wrote maintained final table output: $tables/compliance_tab.tex"
 
 display as result "Stata final-output construction completed."
