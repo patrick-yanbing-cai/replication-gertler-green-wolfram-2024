@@ -143,4 +143,16 @@ if _rc {
 }
 display as result "Wrote maintained final table output: $tables/sacreg.tex"
 
+display as text "Step 4.6: endline money borrowed table (g13_endline_moneyborrowed.do)"
+display as text "BEGIN original source boundary: g13_endline_moneyborrowed.do"
+do "$repo_root/code/replication/final_outputs/g13_endline_moneyborrowed.do"
+display as text "END original source boundary: g13_endline_moneyborrowed.do"
+
+capture confirm file "$tables/endline_moneyborrowed.tex"
+if _rc {
+    display as error "Missing expected maintained final table output: $tables/endline_moneyborrowed.tex"
+    exit 601
+}
+display as result "Wrote maintained final table output: $tables/endline_moneyborrowed.tex"
+
 display as result "Stata final-output construction completed."
