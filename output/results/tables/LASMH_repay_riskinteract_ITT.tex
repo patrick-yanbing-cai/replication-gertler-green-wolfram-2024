@@ -1,0 +1,21 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Effect of Securing a Loan with Digital Collateral on Loan Repayment and Loan Completion, by Risk Level\label{LASMH\_repay\_riskinteract\_ITT}}
+\begin{tabular}{l*{3}{c}}
+\toprule
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}\\
+                    &\multicolumn{1}{c}{Secured}&\multicolumn{1}{c}{Selection}&\multicolumn{1}{c}{Moral Hazard}\\
+\midrule
+Treatment           &        0.11\sym{**} &        0.09\sym{**} &        0.02         \\
+                    &      (0.05)         &      (0.04)         &      (0.05)         \\\addlinespace
+Treatment $\times$ Median risk or above&        0.01         &       -0.10\sym{*}  &        0.11         \\
+                    &      (0.07)         &      (0.06)         &      (0.07)         \\\addlinespace
+Median risk or above&       -0.16\sym{***}&       -0.16\sym{***}&       -0.26\sym{***}\\
+                    &      (0.04)         &      (0.04)         &      (0.04)         \\\addlinespace
+Constant            &        0.64\sym{***}&        0.64\sym{***}&        0.74\sym{***}\\
+                    &      (0.03)         &      (0.03)         &      (0.03)         \\\addlinespace
+\midrule
+N                   &         655         &         814         &         593         \\
+\bottomrule
+\end{tabular}
+\end{table}
