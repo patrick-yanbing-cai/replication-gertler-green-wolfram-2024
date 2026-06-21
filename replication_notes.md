@@ -71,5 +71,5 @@ data/raw/reference_outputs/
 Manual verification is recorded in `docs/verification_checklist.md`. Source
 provenance and maintained module mapping are recorded in `docs/output_map.md`.
 Current milestone and release readiness status are recorded in
-`PROJECT_STATUS.md`; do not treat the repository as release-ready until M6 is
-complete.
+`PROJECT_STATUS.md`. M6 public handoff is complete, and the repository is
+release-ready as of 21 Jun 2026.
