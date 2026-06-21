@@ -19,20 +19,24 @@ if `repo_root_ok' {
 }
 
 if !`repo_root_ok' {
-    local userprofile : env USERPROFILE
-    local userprofile = subinstr("`userprofile'", char(92), "/", .)
-    local repo_root "`userprofile'/Desktop/Lifthrasir/Gertler_Green_Wolfram_2024_replication"
-    capture confirm file "`repo_root'/README.md"
-    local repo_root_ok = (_rc == 0)
-    if `repo_root_ok' {
-        capture confirm file "`repo_root'/docs/staged_input_coverage.md"
+    local env_repo_root : env GGW_REPO_ROOT
+    local env_repo_root = subinstr("`env_repo_root'", char(92), "/", .)
+    if "`env_repo_root'" != "" {
+        local repo_root "`env_repo_root'"
+        capture confirm file "`repo_root'/README.md"
         local repo_root_ok = (_rc == 0)
+        if `repo_root_ok' {
+            capture confirm file "`repo_root'/docs/staged_input_coverage.md"
+            local repo_root_ok = (_rc == 0)
+        }
     }
-    if !`repo_root_ok' {
-        display as error "Could not find repository root from Stata working directory: " c(pwd)
-        display as error "Open code/replication/run_replication.do from this repository or run Stata from the repository root."
-        exit 601
-    }
+}
+
+if !`repo_root_ok' {
+    display as error "Could not find repository root."
+    display as error "Current Stata working directory: " c(pwd)
+    display as error "Run Stata from the repository root or set GGW_REPO_ROOT to the cloned repository path."
+    exit 601
 }
 
 cd "`repo_root'"

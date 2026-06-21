@@ -101,8 +101,11 @@ Dataverse package.
    code/replication/run_replication.do
    ```
 
-   This entrypoint is designed to run from Stata's do-file editor without first
-   changing Stata's working directory.
+   After cloning this repository, open the repository folder in File Explorer,
+   double-click this do-file, and click Run in Stata. If Stata cannot find the
+   repository root, start Stata from the repository root or set the
+   `GGW_REPO_ROOT` environment variable to the cloned repository path before
+   opening Stata.
 
 6. From the repository root, run the maintained Python final-output entrypoint:
 
