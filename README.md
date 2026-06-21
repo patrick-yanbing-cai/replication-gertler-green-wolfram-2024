@@ -23,8 +23,8 @@ Dataverse package:
 - 42 LaTeX table files
 - 9 figure files
 
-Current release readiness is tracked in `PROJECT_STATUS.md`. The repository is
-not release-ready until the M6 public handoff work is complete.
+Current release readiness is tracked in `PROJECT_STATUS.md`. M6 public handoff
+is complete, and the repository is release-ready as of 21 Jun 2026.
 
 ---
 
