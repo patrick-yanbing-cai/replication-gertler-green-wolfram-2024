@@ -34,6 +34,16 @@ Status values:
   and `output/results/figures/takeupbywtp_dif.png` existed after the run. This
   records fresh end-to-end Stata pipeline evidence only; it does not add any new
   reference-output comparison beyond the per-output checks below.
+- M5 Python rerun: `python code/replication/run_python_outputs.py` was run from
+  the repository root with Python 3.11.5 on 21 Jun 2026. The maintained Python
+  entrypoint completed successfully and wrote the four repayment/completion PDF
+  figures, the four loan IRR PNG/EPS figures, and
+  `output/results/tables/r_treatment_irr_withCI.tex`. A second immediate run
+  left SHA256 hashes unchanged for all nine maintained Python outputs, and
+  `git status --short -- data/raw` reported no tracked or untracked writes under
+  `data/raw`. This records fresh end-to-end Python pipeline and repeatability
+  evidence only; it does not add any new reference-output comparison beyond the
+  per-output checks below.
 
 ## Tables
 
