@@ -150,13 +150,17 @@ code/setup/install_stata_dependencies.do
 ```
 
 Then run maintained Stata code through the top-level replication entrypoint.
-The entrypoint can be opened directly in Stata's do-file editor and run without
-first changing Stata's working directory. Opening this file and clicking Run
-starts the ordered replication workflow:
+After cloning this repository, open the repository folder in File Explorer,
+double-click this do-file, and click Run in Stata to start the ordered
+replication workflow:
 
 ```text
 code/replication/run_replication.do
 ```
+
+If Stata reports that it cannot find the repository root, start Stata from the
+repository root or set the `GGW_REPO_ROOT` environment variable to the cloned
+repository path before opening Stata.
 
 The ordered workflow runs:
 
