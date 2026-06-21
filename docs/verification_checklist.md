@@ -54,6 +54,13 @@ Status values:
   completeness, path availability, and status consistency after the M5 reruns;
   local Stata comparison conclusions remain grounded in the user's manual Stata
   run recorded in the per-output notes.
+- M6 public consistency audit: on 21 Jun 2026, the checklist was audited after
+  the public README and replication notes updates for exactly 42 table rows and
+  9 figure rows. All 51 reproduced paths existed under `output/results/`, all
+  listed reproduced outputs were tracked by git, and all output rows carried
+  status `match`. The Python caveats for deterministic maintained outputs remain
+  limited to the accepted M4/M5 boundaries, and `README.md` plus
+  `replication_notes.md` do not contradict this inventory.
 
 ## Tables
 
