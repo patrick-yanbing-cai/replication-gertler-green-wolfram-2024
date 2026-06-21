@@ -1,49 +1,75 @@
 # Replication Notes
 
-## Project Goal
+## Maintained Boundary
 
-This repo builds a cleaned Stata/Python replication layer for Gertler, Green, and Wolfram (2024), "Digital Collateral."
-
-The original Dataverse package remains separate under:
+This repo maintains a Stata/Python replication layer for Gertler, Green, and
+Wolfram (2024), "Digital Collateral." The original Dataverse package remains
+separate under:
 
 ```text
 dataverse_files/Gertler. Green. and Wolfram/
 ```
 
-It is treated as read-only source material and is not tracked by git.
+That package is treated as read-only source material and is not tracked by git.
+Researchers should download and extract it locally, then run:
 
-## Initial Decisions
+```bash
+python code/setup/prepare_raw_files.py
+```
 
-- Maintain only Stata and Python code in this repo's formal replication layer.
-- Do not require R, Matlab, or Jupyter notebooks for the maintained pipeline.
-- Do not modify the original Dataverse package.
-- Stage raw inputs into `data/raw/` before running replication code.
-- Track final reproduced outputs under `output/results/`.
-- Use manual verification records rather than a complex automated comparison tool.
+The setup script stages the required raw inputs under `data/raw/` and copies
+the original final tables and figures into `data/raw/reference_outputs/` for
+manual verification. Maintained code should read from staged inputs under
+`data/raw/`, not directly from `dataverse_files/`.
 
-## Current Raw Package Observations
+## Execution Boundary
 
-The original package includes:
+The maintained Stata workflow is:
 
-- 42 table files under `tables/`
-- 9 figure files under `figures/`
-- Stata, R, Matlab, and notebook scripts under `scripts/`
-- A hardcoded local path in `scripts/a1_globals.do`
-- Hardcoded local paths in the original R figure scripts
+```text
+code/replication/run_replication.do
+```
 
-## Output Target
+That entrypoint runs Step 0 through Step 4: path and dependency checks, LSMS
+support construction, baseline survey support construction, endline survey
+support construction, and maintained Stata final-output construction. It writes
+maintained Stata intermediates under `data/processed/stata`, Stata logs under
+`output/logs/stata`, and Stata final outputs under `output/results`.
 
-First-version replication target:
+The maintained Python workflow is:
 
-- all 42 original `.tex` table files
-- all 9 original figure files
+```bash
+python code/replication/run_python_outputs.py
+```
 
-Each output should be reproduced from the maintained pipeline and checked in `docs/verification_checklist.md`.
+That entrypoint writes the maintained Python replacement outputs under
+`output/results/figures` and `output/results/tables`.
 
-## Change Log
+R, Matlab, and Jupyter notebooks from the original Dataverse package are source
+provenance, not maintained execution entrypoints for this repo.
 
-### 2026-06-17
+## Output And Verification Boundary
 
-- Created initial repository skeleton.
-- Added `code/setup/prepare_raw_files.py` to stage the original Dataverse package into `data/raw/`.
-- Added initial README and verification checklist.
+The maintained final-output target is:
+
+- 42 LaTeX table files
+- 9 figure files
+
+The split is 41 Stata table files plus one Stata figure, and one Python table
+plus eight Python figure files. Final reproduced outputs are tracked under:
+
+```text
+output/results/
+```
+
+Reference outputs are staged locally under:
+
+```text
+data/raw/reference_outputs/
+```
+
+Manual verification is recorded in `docs/verification_checklist.md`. Source
+provenance and maintained module mapping are recorded in `docs/output_map.md`.
+Current milestone and release readiness status are recorded in
+`PROJECT_STATUS.md`; do not treat the repository as release-ready until M6 is
+complete.
