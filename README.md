@@ -47,6 +47,24 @@ The original package is not tracked by git.
 
 ---
 
+## License and Reuse Boundary
+
+The maintained repository contents are released under the MIT License; see
+`LICENSE`.
+
+This license applies to the maintained replication code, documentation, and
+tracked reproduced outputs in this repository. It does not relicense the
+original Dataverse package, source data, third-party materials, or the
+published paper. Download the original replication package separately from
+Harvard Dataverse:
+
+- https://doi.org/10.7910/DVN/WWES0L
+
+Users should cite the original article when using this replication project or
+the underlying replication package; see `Citation` below.
+
+---
+
 ## Repository Structure
 
 ```text
