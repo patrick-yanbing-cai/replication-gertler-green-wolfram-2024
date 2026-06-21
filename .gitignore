@@ -3,6 +3,9 @@ dataverse_files/
 data/raw/
 data/processed/
 
+# Local/private agent reports
+docs/private/
+
 # Runtime artifacts
 logs/
 *.log
