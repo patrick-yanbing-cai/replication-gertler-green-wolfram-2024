@@ -164,9 +164,11 @@ Maintained non-Stata final outputs are generated through the Python entrypoint:
 python code/replication/run_python_outputs.py
 ```
 
-The current Python final-output module generates the Figure 4 repayment and
+The current Python final-output modules generate the Figure 4 repayment and
 completion rate panels from staged repayment data under `data/raw/repayment`
-and writes the PDFs under `output/results/figures`.
+and the loan portfolio IRR table from staged cash-flow data under
+`data/raw/interim`. Outputs are written under `output/results/figures` and
+`output/results/tables`.
 
 ---
 
@@ -176,6 +178,12 @@ The maintained replication code uses:
 
 - Stata
 - Python 3.11+
+
+Install the Python package requirements with:
+
+```bash
+python -m pip install -r requirements.txt
+```
 
 Stata dependency setup is maintained as clickable executable Stata code in
 `code/setup/install_stata_dependencies.do`. The replication workflow checks
