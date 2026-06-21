@@ -244,7 +244,9 @@ for this repo.
 
 Verification is tracked manually in `docs/verification_checklist.md`.
 Output provenance and source-to-module mapping are tracked in
-`docs/output_map.md`.
+`docs/output_map.md`. Formal replication notes for replicators are documented
+in `replication_notes.md`. Lessons from the agent-assisted replication workflow
+are documented in `docs/agent_assisted_replication_notes.md`.
 
 Each final output should be checked against the staged reference output under:
 
