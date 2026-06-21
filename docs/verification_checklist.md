@@ -44,6 +44,16 @@ Status values:
   `data/raw`. This records fresh end-to-end Python pipeline and repeatability
   evidence only; it does not add any new reference-output comparison beyond the
   per-output checks below.
+- M5 full verification audit: on 21 Jun 2026, the checklist was audited for
+  exactly 42 table rows and 9 figure rows, all 51 rows carried status `match`,
+  every listed reference path existed under `data/raw/reference_outputs/`, and
+  every listed reproduced path existed under `output/results/`. A
+  newline-normalized text comparison found the 41 maintained Stata table files
+  matching their staged references, with `r_treatment_irr_withCI.tex` relying on
+  its recorded Python unseeded-bootstrap caveat. This audit confirms checklist
+  completeness, path availability, and status consistency after the M5 reruns;
+  local Stata comparison conclusions remain grounded in the user's manual Stata
+  run recorded in the per-output notes.
 
 ## Tables
 
