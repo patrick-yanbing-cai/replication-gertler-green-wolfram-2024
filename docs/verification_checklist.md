@@ -21,6 +21,20 @@ Status values:
 - `diff`: output differs and needs investigation
 - `n/a`: intentionally excluded, with explanation
 
+## Maintained Pipeline Reruns
+
+- M5 Stata rerun: `code/replication/run_replication.do` was run manually in
+  local Stata on 21 Jun 2026. The log at
+  `output/logs/stata/run_replication.smcl` records `started: 21 Jun 2026
+  14:19:26`, the ordered Step 0 through Step 4 workflow, `completion status:
+  completed`, and `completed: 21 Jun 2026 14:20:13`. The rerun regenerated
+  Stata support outputs under `data/processed/stata/lsms`,
+  `data/processed/stata/baseline_survey`, and
+  `data/processed/stata/endline_survey`; the 41 maintained Stata table outputs
+  and `output/results/figures/takeupbywtp_dif.png` existed after the run. This
+  records fresh end-to-end Stata pipeline evidence only; it does not add any new
+  reference-output comparison beyond the per-output checks below.
+
 ## Tables
 
 | Output | Reference | Reproduced | Status | Notes |
